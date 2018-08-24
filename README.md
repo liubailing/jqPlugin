@@ -1,6 +1,6 @@
 ##  gulp project
 
-Gulp 开发插件qLMS
+Gulp 开发 jq插件
 
 ## 使用方法
 
@@ -51,7 +51,8 @@ yarn add gulp -g
 
 ```sh
 git clone https://github.com/liubailing/jqLMS.git
-cd jqLMS
+
+cd jqPlugin
 # 下载依赖包
 yarn
 # 启动debug任务，这会监视js、html、css、images的变动，触发自动化任务并刷新浏览器
@@ -64,6 +65,7 @@ gulp
 
 |名称|说明|版本管理|
 |--|--|---|
+|config/gulpfile.base.js |gulp的基本配置文件。|Y|
 |gulpfile.js |gulp的配置文件。|Y|
 | package.json| yarn（或npm）的配置文件|Y|
 |yarn.lock| yarn用来保存各个软件包版本的文件，用于保持不同开发者所使用的版本的一致性|Y|
@@ -101,9 +103,9 @@ yarn (或者 cnpm install)
 
 1、del .\dist\（可忽略）
 
-2、gulp release
+2、gulp dev --name ***
 
-3、gulp
+3、gulp --name ***
 
 coding 走起！
 ```
