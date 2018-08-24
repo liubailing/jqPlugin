@@ -1,0 +1,89 @@
+body{
+    background: #fff; 
+}
+
+/* .oneline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+} */
+
+.mulline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-indent: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* #div_imgMgr .modal-content{
+    width: 980px;
+} */
+/* #div_imgMgr #div_imgCont{
+   border-top: 1px solid #e5e5e5;
+   margin-top: 15px;
+   padding-top:5px; 
+} */
+
+/* FILE MANAGER */
+/* .file-box {
+    float: left;
+    width: 220px;
+  } */
+
+  /* .file {
+    border: 1px solid #e7eaec;
+    padding: 0;
+    background-color: #ffffff;
+    position: relative;
+    margin: 5px;
+    margin-bottom: 10px;
+} */
+
+#div_imgMgr .div_imgBox {
+    /* padding:10px; */
+    
+    /* overflow: hidden; */
+}
+
+/* .file .file-name {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7eaec;
+} */
+
+/* #div_imgMgr .oneline {
+    padding: 5px;
+    margin-bottom: 5px;
+} */
+
+/* .btnCornerDelete {
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 1.2em solid transparent;
+    border-right: 1.2em solid #f1f1f1;
+    border-top: 1.2em solid #f1f1f1;
+    right: 0em;
+    top: 0em;
+    z-index: 1;
+}
+
+.btnCornerDelete::after{
+    content: "\2716";
+    position: absolute;
+    top: -.5em;
+    right: -1em;
+    color: red;
+} */
