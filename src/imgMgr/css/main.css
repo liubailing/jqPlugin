@@ -2,14 +2,14 @@ body{
     background: #fff; 
 }
 
-/* .oneline {
+.oneline {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
     margin: 0 auto;
     text-align: left;
-} */
+}
 
 .mulline {
     overflow: hidden;
