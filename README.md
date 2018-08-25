@@ -105,7 +105,7 @@ yarn (或者 cnpm install)
 
 2、gulp dev --name ***
 
-3、gulp --name ***
+3、gulp --name ***  
 
 coding 走起！
 ```
