@@ -3,20 +3,20 @@
 <head>
     <title>图片管理插件</title>
 
-  
-    <link rel="stylesheet" href="../base/css/vendor.min.css" />
-    <script type="text/javascript" src="../base/js/vendor.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="../base/css/vendor.min.css" />
+    <script type="text/javascript" src="../base/js/vendor.min.js"></script> -->
 
     
-    <!-- <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" />
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>  -->
+    <script type="text/javascript" src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="main.min.css" />
 
     <!-- 页面布局样式,与插件无关 -->
-    <!-- <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/assets/css/docs.min.css" /> -->
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/assets/css/docs.min.css" />
 
 
     <style>
@@ -24,610 +24,116 @@
 </head>
 
 <body>
-    
-        
-        
-              
-    <!-- <div class="container-fluid">
+
+    <div class="container-fluid" style="width:80%">
+
         <div class="row flex-xl-nowrap">
-            <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-                <form class="bd-search d-flex align-items-center">
-                    <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;">
-                        <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..." autocomplete="off"
-                            data-siteurl="https://getbootstrap.com" data-docs-version="4.1" spellcheck="false" role="combobox"
-                            aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
-                            style="position: relative; vertical-align: top;">
-                        <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-                        <span class="ds-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;">
-                            <div class="ds-dataset-1"></div>
-                        </span>
-                    </span>
-                    <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav"
-                        aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-                            <title>Menu</title>
-                            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10"
-                                d="M4 7h22M4 15h22M4 23h22"></path>
-                        </svg>
-                    </button>
-                </form>
-
-                <nav class="collapse bd-links" id="bd-docs-nav">
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/getting-started/introduction/">
-                            Getting started
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/getting-started/introduction/">
-                                    Introduction
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/download/">
-                                    Download
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/contents/">
-                                    Contents
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/browsers-devices/">
-                                    Browsers &amp; devices
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/javascript/">
-                                    JavaScript
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/theming/">
-                                    Theming
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/build-tools/">
-                                    Build tools
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/webpack/">
-                                    Webpack
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/getting-started/accessibility/">
-                                    Accessibility
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/layout/overview/">
-                            Layout
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/layout/overview/">
-                                    Overview
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/layout/grid/">
-                                    Grid
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/layout/media-object/">
-                                    Media object
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/layout/utilities-for-layout/">
-                                    Utilities for layout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/content/reboot/">
-                            Content
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/content/reboot/">
-                                    Reboot
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/content/typography/">
-                                    Typography
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/content/code/">
-                                    Code
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/content/images/">
-                                    Images
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/content/tables/">
-                                    Tables
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/content/figures/">
-                                    Figures
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/components/alerts/">
-                            Components
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/components/alerts/">
-                                    Alerts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/badge/">
-                                    Badge
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/breadcrumb/">
-                                    Breadcrumb
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/buttons/">
-                                    Buttons
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/button-group/">
-                                    Button group
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/card/">
-                                    Card
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/carousel/">
-                                    Carousel
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/collapse/">
-                                    Collapse
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/dropdowns/">
-                                    Dropdowns
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/forms/">
-                                    Forms
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/input-group/">
-                                    Input group
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/jumbotron/">
-                                    Jumbotron
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/list-group/">
-                                    List group
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/modal/">
-                                    Modal
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/navs/">
-                                    Navs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/navbar/">
-                                    Navbar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/pagination/">
-                                    Pagination
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/popovers/">
-                                    Popovers
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/progress/">
-                                    Progress
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/scrollspy/">
-                                    Scrollspy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/components/tooltips/">
-                                    Tooltips
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item active">
-                        <a class="bd-toc-link" href="/docs/4.1/utilities/borders/">
-                            Utilities
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li class="active bd-sidenav-active">
-                                <a href="/docs/4.1/utilities/borders/">
-                                    Borders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/clearfix/">
-                                    Clearfix
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/close-icon/">
-                                    Close icon
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/colors/">
-                                    Colors
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/display/">
-                                    Display
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/embed/">
-                                    Embed
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/flex/">
-                                    Flex
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/float/">
-                                    Float
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/image-replacement/">
-                                    Image replacement
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/position/">
-                                    Position
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/screenreaders/">
-                                    Screenreaders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/shadows/">
-                                    Shadows
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/sizing/">
-                                    Sizing
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/spacing/">
-                                    Spacing
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/text/">
-                                    Text
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/vertical-align/">
-                                    Vertical align
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/utilities/visibility/">
-                                    Visibility
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/extend/approach/">
-                            Extend
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/extend/approach/">
-                                    Approach
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/extend/icons/">
-                                    Icons
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/migration/">
-                            Migration
-                        </a>
-
-                        <ul class="nav bd-sidenav"></ul>
-                    </div>
-                    <div class="bd-toc-item">
-                        <a class="bd-toc-link" href="/docs/4.1/about/overview/">
-                            About
-                        </a>
-
-                        <ul class="nav bd-sidenav">
-                            <li>
-                                <a href="/docs/4.1/about/overview/">
-                                    Overview
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/about/brand/">
-                                    Brand
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/about/license/">
-                                    License
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/docs/4.1/about/translations/">
-                                    Translations
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-
-            </div>
-
             <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-                <h1 class="bd-title" id="content">Borders</h1>
-                <p class="bd-lead">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons,
-                    or any other element.</p>
-                <script async="" src="https://cdn.carbonads.com/carbon.js?serve=CKYIKKJL&amp;placement=getbootstrapcom" id="_carbonads_js"></script>
-                <div id="carbonads">
-                    <span>
-                        <span class="carbon-wrap">
-                            <a href="//srv.carbonads.net/ads/click/x/GTND42QICWYI4K3MCKYLYKQMCKBITKJUCWADPZ3JCW7IV5QLCTADTKQKC6BIC2QEFTSDEK3EHJNCLSIZ?segment=placement:getbootstrapcom;"
-                                class="carbon-img" target="_blank" rel="noopener">
-                                <img src="https://cdn4.buysellads.net/uu/1/3386/1525189909-61450.png" alt="" border="0" height="100" width="130" style="max-width: 130px;">
-                            </a>
-                            <a href="//srv.carbonads.net/ads/click/x/GTND42QICWYI4K3MCKYLYKQMCKBITKJUCWADPZ3JCW7IV5QLCTADTKQKC6BIC2QEFTSDEK3EHJNCLSIZ?segment=placement:getbootstrapcom;"
-                                class="carbon-text" target="_blank" rel="noopener">Adobe Creative Cloud for Teams starting at $29.99 per month.</a>
-                        </span>
-                        <a href="http://carbonads.net/?utm_source=getbootstrapcom&amp;utm_medium=ad_via_link&amp;utm_campaign=in_unit&amp;utm_term=carbon"
-                            class="carbon-poweredby" target="_blank" rel="noopener">ads via Carbon</a>
-                    </span>
-                </div>
-
-                <h2 id="border">
-                    <div>Border
-                        <a class="anchorjs-link " href="#border" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a>
-                    </div>
-                </h2>
-
-                <p>Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.</p>
+                <h1 class="bd-title" id="content">Jquery ImgMgr</h1>
 
                 <h3 id="additive">
-                    <div>Additive
-                        <a class="anchorjs-link " href="#additive" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a>
-                    </div>
+                    <div>初始化</div>
                 </h3>
 
                 <div class="bd-example-border-utils">
-
                     <div class="bd-example">
-                        <span class="border"></span>
-                        <span class="border-top"></span>
-                        <span class="border-right"></span>
-                        <span class="border-bottom"></span>
-                        <span class="border-left"></span>
+                        <a data-act="init" class="btn btnTest">初始化</a>
                     </div>
                     <div class="bd-clipboard">
                         <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
                     </div>
                     <figure class="highlight">
-                        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-top"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-right"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-bottom"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-left"</span><span class="nt">&gt;&lt;/span&gt;</span></code></pre>
+                        <pre><code class="language-html" data-lang="html">
+                                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
+                                $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                            </code>
+                         </pre>
                     </figure>
 
                 </div>
 
-                <h3 id="subtractive">
-                    <div>Subtractive
-                        <a class="anchorjs-link " href="#subtractive" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a>
-                    </div>
-                </h3>
+
 
                 <div class="bd-example-border-utils bd-example-border-utils-0">
-
                     <div class="bd-example">
-                        <span class="border-0"></span>
-                        <span class="border-top-0"></span>
-                        <span class="border-right-0"></span>
-                        <span class="border-bottom-0"></span>
-                        <span class="border-left-0"></span>
+                        <a data-act="tab" class="btn btnTest">设置分组</a>
+                        <small>分组数据格式 参照 data.js</small>
                     </div>
                     <div class="bd-clipboard">
                         <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
                     </div>
                     <figure class="highlight">
-                        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-0"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-top-0"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-right-0"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-bottom-0"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border-left-0"</span><span class="nt">&gt;&lt;/span&gt;</span></code></pre>
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("setTab", data.resGroups.data);</code></pre>
                     </figure>
 
                 </div>
 
-                <h2 id="border-color">
-                    <div>Border color
-                        <a class="anchorjs-link " href="#border-color" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a>
-                    </div>
-                </h2>
 
-                <p>Change the border color using utilities built on our theme colors.</p>
-
-                <div class="bd-example-border-utils">
-
+                <div class="bd-example-border-utils bd-example-border-utils-0">
                     <div class="bd-example">
-
-                        <span class="border border-primary"></span>
-                        <span class="border border-secondary"></span>
-                        <span class="border border-success"></span>
-                        <span class="border border-danger"></span>
-                        <span class="border border-warning"></span>
-                        <span class="border border-info"></span>
-                        <span class="border border-light"></span>
-                        <span class="border border-dark"></span>
-                        <span class="border border-white"></span>
+                        <a data-act="img" class="btn btnTest"> 设置图片及其分页</a>
+                        <small>图片数据格式 参照 data.js</small>
                     </div>
                     <div class="bd-clipboard">
                         <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
                     </div>
                     <figure class="highlight">
-                        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-primary"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-secondary"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-success"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-danger"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-warning"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-info"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-light"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-dark"</span><span class="nt">&gt;&lt;/span&gt;</span>
-                  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"border border-white"</span><span class="nt">&gt;&lt;/span&gt;</span></code></pre>
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("setNav", data.resGroups.data);</code></pre>
                     </figure>
 
                 </div>
 
-                <h2 id="border-radius">
-                    <div>Border-radius
-                        <a class="anchorjs-link " href="#border-radius" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;"></a>
+
+
+                <div class="bd-example-border-utils bd-example-border-utils-0">
+                    <div class="bd-example">
+                        <a  data-act="params" class="btn btnTest"> 取得参数</a>
+                        <small>图片数据格式 参照 data.js</small>
                     </div>
-                </h2>
+                    <div class="bd-clipboard">
+                        <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+                    </div>
+                    <figure class="highlight">
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("getParams");</code></pre>
+                    </figure>
 
-                <p>Add classes to an element to easily round its corners.</p>
-
-                <div class="bd-example bd-example-images">
-                    <img data-src="holder.js/75x75" class="rounded" alt="75x75" style="width: 75px; height: 75px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f3%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f3%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true">
-                    <img data-src="holder.js/75x75" class="rounded-top" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f6%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
-                    <img data-src="holder.js/75x75" class="rounded-right" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f6%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f6%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
-                    <img data-src="holder.js/75x75" class="rounded-bottom" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f7%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f7%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
-                    <img data-src="holder.js/75x75" class="rounded-left" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f8%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
-                    <img data-src="holder.js/75x75" class="rounded-circle" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98f9%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98f9%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
-                    <img data-src="holder.js/75x75" class="rounded-0" alt="75x75" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2275%22%20height%3D%2275%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2075%2075%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1656a6b98fa%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1656a6b98fa%22%3E%3Crect%20width%3D%2275%22%20height%3D%2275%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2219.34375%22%20y%3D%2242.05625%22%3E75x75%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                        data-holder-rendered="true" style="width: 75px; height: 75px;">
                 </div>
 
-                <div class="bd-clipboard">
-                    <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+
+                <div class="bd-example-border-utils bd-example-border-utils-0">
+                    <div class="bd-example">
+                        <a data-act="show" class="btn btnTest"> 显示</a>
+                    </div>
+                    <div class="bd-clipboard">
+                        <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+                    </div>
+                    <figure class="highlight">
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("show");</code></pre>
+                    </figure>
+
                 </div>
-                <figure class="highlight">
-                    <pre><code class="language-html" data-lang="html"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-top"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-right"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-bottom"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-left"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-circle"</span><span class="nt">&gt;</span>
-                  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"..."</span> <span class="na">alt=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"rounded-0"</span><span class="nt">&gt;</span></code></pre>
-                </figure>
 
 
-            </main>
+                <div class="bd-example-border-utils bd-example-border-utils-0">
+                    <div class="bd-example">
+                        <a  data-act="hide" class="btn btnTest"> 隐藏</a>
+                    </div>
+                    <div class="bd-clipboard">
+                        <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+                    </div>
+                    <figure class="highlight">
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("hide");</code></pre>
+                    </figure>
 
-            <div class="d-none d-xl-block col-xl-2 bd-toc">
-                <ul class="section-nav">
-                    <li class="toc-entry toc-h2">
-                        <a href="#border">Border</a>
-                        <ul>
-                            <li class="toc-entry toc-h3">
-                                <a href="#additive">Additive</a>
-                            </li>
-                            <li class="toc-entry toc-h3">
-                                <a href="#subtractive">Subtractive</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry toc-h2">
-                        <a href="#border-color">Border color</a>
-                    </li>
-                    <li class="toc-entry toc-h2">
-                        <a href="#border-radius">Border-radius</a>
-                    </li>
-                </ul>
-            </div>
-
-
+                </div>
 
         </div>
-    </div> -->
-
-
-    
+    </div>
 </body>
 
 
@@ -655,24 +161,49 @@
                 console.log("点击分组");
             },
             onCheck: function (d) {
-                alert(d.picid);
                 $("#btnTest").jqImgMgr("hide");
                 console.log("选择图片");
             }
         }
 
-        $("#btnTest").click(function () {
-            $("#btnTest").jqImgMgr("show");
+        $(".btnTest").click(function (e) {
+            var obj= $(e.target);
+          var d = obj.data();
+          switch(d.act){
+            case "init":
+                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
+                $("#btnTest").jqImgMgr("setImg", imgs);
+                $("#btnTest").jqImgMgr("show");
+                break;
+            case "tab":
+                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
+                break;
+            case "img":
+                $("#btnTest").jqImgMgr("setImg", imgs);
+                break;
+            case "params":
+                var ppp = $(".btnTest").jqImgMgr("getParams");
+                console.log(ppp);
+                break;
+            case "show":
+                $("#btnTest").jqImgMgr("show");
+                break;
+            case "hide":
+                $("#btnTest").jqImgMgr("hide");
+                break;
+              default:
+              break;
+          }
         })
 
         if (data.resGroups.code == 0) {
-            $("#btnTest").jqImgMgr("setNav", data.resGroups.data);
+           
         }
         if (data.resImgs.code == 0) {
-            $("#btnTest").jqImgMgr("setImg", imgs);
+            
         }
 
-        $("#btnTest").jqImgMgr("show");
+        //$("#btnTest").jqImgMgr("show");
     })
 </script>
 

@@ -4,7 +4,7 @@ var data={
         msg:'',
         data:{  
             all: {name:"所有图片"},
-            my: {id:123,name:"我上传的"},
+            user: {id:123,name:"我上传的"},
             info: {id:11,name:"信息-图片组",},
             group: {name:"分类-图片组",children:[{id:123,name:"分组1",class:'active'},{id:345,name:"分组222"},{id:456,name:"分组333"}]},
             infoGroup: {infoId:11,children:[{id:123,name:"信息分组1"},{id:345,name:"信息分组222"},{id:456,name:"信息分组333"}]}
