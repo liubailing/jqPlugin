@@ -1,17 +1,17 @@
 <html>
 
 <head>
-    <title>图片管理插件</title>
+    <title>图片管理插件1</title>
 
 
-    <!-- <link rel="stylesheet" href="../base/css/vendor.min.css" />
-    <script type="text/javascript" src="../base/js/vendor.min.js"></script> -->
+    <link rel="stylesheet" href="../base/css/vendor.min.css" />
+    <script type="text/javascript" src="../base/js/vendor.min.js"></script>
 
-    
-    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" />
+
+    <!-- <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" />
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script> -->
 
     <link rel="stylesheet" href="main.min.css" />
 
@@ -44,8 +44,10 @@
                     </div>
                     <figure class="highlight">
                         <pre><code class="language-html" data-lang="html">
-                                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
-                                $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                                $("#btnTest").jqImgMgr({
+                                    tabs:data.resTabs.data,
+                                    data:data.resImgs.data
+                                });
                             </code>
                          </pre>
                     </figure>
@@ -64,7 +66,7 @@
                     </div>
                     <figure class="highlight">
                         <pre><code class="language-html" data-lang="html">
-                            $("#btnTest").jqImgMgr("setTab", data.resGroups.data);</code></pre>
+                            $("#btnTest").jqImgMgr("setTab", data.resTabs.data);</code></pre>
                     </figure>
 
                 </div>
@@ -80,7 +82,7 @@
                     </div>
                     <figure class="highlight">
                         <pre><code class="language-html" data-lang="html">
-                            $("#btnTest").jqImgMgr("setNav", data.resGroups.data);</code></pre>
+                            $("#btnTest").jqImgMgr("setNav", data.resImgs.data);</code></pre>
                     </figure>
 
                 </div>
@@ -89,7 +91,7 @@
 
                 <div class="bd-example-border-utils bd-example-border-utils-0">
                     <div class="bd-example">
-                        <a  data-act="params" class="btn btnTest"> 取得参数</a>
+                        <a data-act="params" class="btn btnTest"> 取得参数</a>
                         <small>图片数据格式 参照 data.js</small>
                     </div>
                     <div class="bd-clipboard">
@@ -120,7 +122,7 @@
 
                 <div class="bd-example-border-utils bd-example-border-utils-0">
                     <div class="bd-example">
-                        <a  data-act="hide" class="btn btnTest"> 隐藏</a>
+                        <a data-act="hide" class="btn btnTest"> 隐藏</a>
                     </div>
                     <div class="bd-clipboard">
                         <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
@@ -134,6 +136,7 @@
 
         </div>
     </div>
+    <div class="btnTest" id="btnTest"></div>
 </body>
 
 
@@ -145,63 +148,65 @@
 
 <script type="text/javascript">
     $(function () {
-        var imgs = data.resImgs.data;
-        imgs["callback"] = {
-            onPaging: function (d) {
-                imgs.pageIndex = d.pageindex;
-                $("#btnTest").jqImgMgr("setImg", imgs);
-                console.log("点击分页");
-            },
-            onDelete: function (d) {
-                console.log("点击删除：" + d.picid);
-                $("#btnTest").jqImgMgr("delete", d.picid);
-            },
-            onGroup: function (d) {
-                $("#btnTest").jqImgMgr("setImg", imgs);
-                console.log("点击分组");
-            },
-            onCheck: function (d) {
-                $("#btnTest").jqImgMgr("hide");
-                console.log("选择图片");
+
+        var config = {
+            tabs: data.resTabs.data,
+            data: data.resImgs.data,
+            callback:{             
+                onDelete: function (d) {
+                    console.log("点击删除：" + d.picid);
+                    $("#btnTest").jqImgMgr("delete", d.picid);
+                },
+                onTab: function (d) {
+                    //$("#btnTest").jqImgMgr("setTab", data.resTabs.data);
+                    var d = data.resImgs.data;
+                    d.pageIndex = 1;
+                    $("#btnTest").jqImgMgr("setImg", d);
+                    console.log("点击分组");
+                },
+                onPager: function (d) {
+                    var imgs =data.resImgs.data;
+                    imgs.pageIndex = d.pageindex;
+                    $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                    console.log("点击分页");
+                },
+                onCheck: function (d) {
+                    $("#btnTest").jqImgMgr("hide");
+                    console.log("选择图片");
+                }
             }
         }
-
+        
         $(".btnTest").click(function (e) {
-            var obj= $(e.target);
-          var d = obj.data();
-          switch(d.act){
-            case "init":
-                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
-                $("#btnTest").jqImgMgr("setImg", imgs);
-                $("#btnTest").jqImgMgr("show");
-                break;
-            case "tab":
-                $("#btnTest").jqImgMgr("setTab", data.resGroups.data);
-                break;
-            case "img":
-                $("#btnTest").jqImgMgr("setImg", imgs);
-                break;
-            case "params":
-                var ppp = $(".btnTest").jqImgMgr("getParams");
-                console.log(ppp);
-                break;
-            case "show":
-                $("#btnTest").jqImgMgr("show");
-                break;
-            case "hide":
-                $("#btnTest").jqImgMgr("hide");
-                break;
-              default:
-              break;
-          }
+            var obj = $(e.target);
+            var d = obj.data();
+            switch (d.act) {
+                case "init":
+                    $("#btnTest").jqImgMgr(config);
+                    // $("#btnTest").jqImgMgr("setImg", imgs);
+                    // $("#btnTest").jqImgMgr("show");
+                    break;
+                case "tab":
+                    $("#btnTest").jqImgMgr("setTab", data.resTabs.data);
+                    break;
+                case "img":
+                    $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                    break;
+                case "params":
+                    var ppp = $(".btnTest").jqImgMgr("getParams");
+                    console.log(ppp);
+                    break;
+                case "show":
+                    $("#btnTest").jqImgMgr("show");
+                    break;
+                case "hide":
+                    $("#btnTest").jqImgMgr("hide");
+                    break;
+                default:
+                    break;
+            }
         })
 
-        if (data.resGroups.code == 0) {
-           
-        }
-        if (data.resImgs.code == 0) {
-            
-        }
 
         //$("#btnTest").jqImgMgr("show");
     })

@@ -1,4 +1,5 @@
-var TMP_jqImgMgr = '<div class="modal fade" id="div_imgMgr" tabindex="-1" role="dialog">\
+var TMP_jqImgMgr = '<div id="div_jqImgMgr"></div>\
+<div class="modal fade" id="div_imgMgr" tabindex="-1" role="dialog">\
 <div class="modal-dialog" role="document" style="width:95%;max-width:unset;">\
   <div class="modal-content">\
     <div class="modal-header">\
@@ -67,51 +68,78 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
 });
 
 (function ($) {
-    var $imgMgr;
-    var resImg = null;
+    var $imgMgr =null;
     'use strict';
     var opts = {
+        tabs: {},
+        data: {},
         callback: {
-            onPaging: null,//点击分页
-            onDelte: null,//点击删除
-            onGroup: null,//点击Nav分组
+            onPager: null,//点击 onPager 分页
+            onTab: null,//点击 onTab 分组
             onCheck: null,//点击选中
+            onDelete: null//点击删除
         }
     }
 
-    var act = {
+    var m={
+        set:function(options){
+            var d = $.extend(true, opts, options);
+            $imgMgr.data("jqImgMgr", d);
+            return d;
+        },
+        setTab:function(data){
+            var d = $imgMgr.data("jqImgMgr");
+            d.tabs = data;
+            $imgMgr.data("jqImgMgr", d);
+            return d;
+        },
+        setData:function(data){
+            var d = $imgMgr.data("jqImgMgr");
+            d.data = data;
+            $imgMgr.data("jqImgMgr", d);
+            return d;
+        },
+        get:function(){
+            var d = $imgMgr.data("jqImgMgr");
+            return d;
+        }
+    };
+
+    var c = {
         init: function (options) {
             var $this = $(this);
-            var id = $this[0].id;
-            var opts = opt.init(options);
-            var htmlpager = '';
+            var d = m.set(options);
+
+            dom.initTab(d.tabs);
+            dom.initImg( d.data);
+            dom.initPager(d.data);
+            $('#div_imgMgr').modal('show');
         },
         setTab: function (d) {
-            var c = $.extend(true, opts, d);
-            dom.initNav(c);
+            dom.initTab(d);
         },
         setImg: function (d) {
-            var c = $.extend(true, opts, d);
-            dom.initImg(c);
-            dom.initPager(c);
+            dom.initImg(d);
+            dom.initPager(d);
         },
         show: function (d) {
             $('#div_imgMgr').modal('show');
         },
-        hide: function () { $('#div_imgMgr').modal('hide'); },
+        hide: function () { 
+            $('#div_imgMgr').modal('hide'); 
+        },
         toggle: function () {
             $('#div_imgMgr').modal('toggle');
         },
-        getParams:function(){
+        getParams: function () {
             var para = GetParams();
-            debugger;
-            return  para;
-        },
-        delete: function (id) {
-            $("#div_imgbox" + id).remove();
-        },
+            return para;
+        },      
         destroy: function (obj) {
-
+            $imgMgr.data("jqImgMgr", {});
+            $("#div_imgTabs").html("");
+            $("#div_imgPanel").html("");
+            $("#div_imgPager").html("");
         }
     }
 
@@ -130,27 +158,27 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
 
         if (a.infoid > 0 && a.groupid > 0) {
             return {
-                type:"infoGroup",
-                infoid:a.infoid,
-                groupid:a.groupid,
+                type: "infoGroup",
+                infoid: a.infoid,
+                groupid: a.groupid,
                 pageindex: ind
             };
         } else if (a.infoid > 0) {
             return {
-                type:"info",
-                infoid:a.infoid,
+                type: "info",
+                infoid: a.infoid,
                 pageindex: ind
             }
         } else if (a.groupid > 0) {
-            return p ={
-                type:"group",
-                groupid:a.groupid,
+            return p = {
+                type: "group",
+                groupid: a.groupid,
                 pageindex: ind
             }
         } else if (a.userid > 0) {
             return {
-                type:"user",
-                userid:a.userid,
+                type: "user",
+                userid: a.userid,
                 pageindex: ind
             }
         } else {
@@ -162,7 +190,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
     }
 
     var dom = {
-        initNav: function (data) {
+        initTab: function (data) {
 
             function getClass(c) {
                 if (c != undefined && c != null) { return c; }
@@ -210,6 +238,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             //显示Nav
             $("#div_imgTabs").html(str);
 
+            var d = m.get(); 
             $('#div_imgTabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var $obj = $(e.target), $objP = $obj.parents(".dropdown");
                 $("#div_imgTabs .active").removeClass("active");
@@ -218,6 +247,13 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 if ($objP.length > 0) {
                     $objP.addClass("active");
                     $objP.find(".dropdown-toggle").addClass("active");
+                }
+             
+
+                if (typeof d.callback.onTab == "function") {
+                   
+                    var tp = GetParams()
+                    d.callback.onTab(tp);
                 }
 
                 //console.log(e.target); // newly activated tab
@@ -241,14 +277,14 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 //$(this).find(".btn-warning").removeClass("btn-warning").addClass("btn-default");
                 $(this).find(".btnCornerDelete").hide()
             })
-
+            var d = m.get();
             $("#div_imgPanel").unbind("click").click(function (e) {
                 var $obj = $(e.target);
                 if (e.target.tagName === "SPAN" && $obj.hasClass("btnCornerDelete")) {
                     var cp = GetParams(), p = $obj.parents(".div_imgBox");
                     cp["picid"] = p.data("picid");
-                    if (typeof data.callback.onDelete == "function") {
-                        data.callback.onDelete(cp);
+                    if (typeof d.callback.onDelete == "function") {
+                        d.callback.onDelete(cp);
                     }
                     console.log(cp);
 
@@ -256,8 +292,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     var cp = GetParams(), p = $obj.parents(".div_imgBox");
                     cp["picid"] = p.data("picid");
                     cp["picurl"] = p.find("img").prop("src");
-                    if (typeof data.callback.onCheck == "function") {
-                        data.callback.onCheck(cp);
+                    if (typeof d.callback.onCheck == "function") {
+                        d.callback.onCheck(cp);
                     }
                     console.log(cp);
 
@@ -309,6 +345,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             }
             strPage += tempPage.format(data.pageIndex == data.pageTotal ? "disabled" : "", data.pageTotal, '»');
             $("#div_imgPager").html('<ul class="pagination">' + strPage + '</ul>');
+
+            var d = m.get(); 
             $("#div_imgPager").unbind("click").bind("click", function (e) {
                 var $obj = $(e.target);
                 if (e.target.tagName === "A" && $obj.hasClass("paging")) {
@@ -320,8 +358,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                         var pp = GetParams();
                         pp["pageindex"] = page;
 
-                        if (typeof data.callback.onPaging == "function") {
-                            data.callback.onPaging(pp);
+                        if (typeof d.callback.onPager == "function") {
+                            d.callback.onPager(pp);
                         }
                         console.log(pp);
                     }
@@ -331,15 +369,13 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
     }
 
     $.fn.jqImgMgr = function (options) {
- 
-     
-        if (options && typeof options === "object") {
-            return act.init.call(this, options);
-        } else if (options && typeof options === "string") {
-            if(act[options]) 
-                return act[options].call(this, arguments[1]);
 
-             
+        if (options && typeof options === "object") {
+            $imgMgr = this;
+            return c.init.call($imgMgr, options);
+        } else if (options && typeof options === "string" && c[options]) {
+            $imgMgr = this;
+            return c[options].call($imgMgr, arguments[1]);
         }
     }
 
@@ -347,9 +383,13 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
 
     };
 
+
+
+})(jQuery);
+
+$(function () {
     if ($('#div_imgMgr').length < 1) {
         $('body').append(TMP_jqImgMgr);
     }
-
-})(jQuery);
+})
 

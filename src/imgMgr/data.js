@@ -1,5 +1,5 @@
 var data={
-    resGroups:{
+    resTabs:{
         code:0,
         msg:'',
         data:{  
@@ -17,7 +17,6 @@ var data={
             pageIndex:12,
             pageSize:14,
             pageTotal:150,
-            callback:{},
             items:[
                 {
                     id:1,
