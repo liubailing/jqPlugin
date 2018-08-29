@@ -34,6 +34,14 @@ gulp.task('t', function () {
 });
 
 
+//vender 
+// 拷贝
+gulp.task('vendor',function(){
+    return gulp.src('src/vendor/**/*')
+        .pipe(gulp.dest('dist/vendor'))
+		.pipe(browserSync.stream());
+});
+
 //基础依赖的JS、Css	
 gulp.task('cssVendor', function () {
 	return gulp.src(baseSrc.css)
@@ -84,10 +92,13 @@ gulp.task('del.base', function () { // 开始任务前会先执行[clean]任务
 
 // 发布基本文件
 gulp.task('base', function () { // 开始任务前会先执行[clean]任务
+
+	//copyfile("\\src\\verdor","\\dist\\verdor");
 	return gulp.start(
 		'cssVendor', 
 		'jsVendor',
-		'htmlVendor'
+		'htmlVendor',
+		'vendor'
 	
 	); // 等[clean]任务执行完毕后再执行其他任务
 });
