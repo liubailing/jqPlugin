@@ -14,9 +14,9 @@ var data={
         code:0,
         msg:'',
         data:{
-            pageIndex:12,
-            pageSize:14,
-            pageTotal:150,
+            pageindex:12,
+            pagesize:14,
+            pagetotal:150,
             items:[
                 {
                     id:1,
