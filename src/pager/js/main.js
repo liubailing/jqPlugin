@@ -50,24 +50,14 @@
             var d = m.set(options);
 
             dom.initPager(d);
-            $('#div_imgMgr').modal('show');
         },
         show: function (d) {
-            $('#div_imgMgr').modal('show');
         },
-        hide: function () { 
-            $('#div_imgMgr').modal('hide'); 
-        },
-        toggle: function () {
-            $('#div_imgMgr').modal('toggle');
+        hide: function () { ; 
         },
         getParams: function () {
-            var para = GetParams();
-            return para;
         },      
-        destroy: function (obj) {
-            $pager.data("jqImgMgr", {});
-            $("#").html("");
+        destroy: function (obj) {            
         }
     }
 
