@@ -39,6 +39,11 @@ var TMP_jqImg = '\
     </div>\
 </div>';
 
+var TMP_jqImgAdd = '<div class="col-md-3 div_imgBox" id="div_pic0" data-picId="0">\
+<div class="card mb-3 shadow-sm">\
+<input type="file" id="input-file-now-custom-2" class="dropify" />\
+</div>\
+</div>';
 
 var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0}">\
 <div class="card mb-3 shadow-sm">\
@@ -135,9 +140,9 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             var para = GetParams();
             return para;
         },
-        delete:function(id){
-            if(id>0){
-                $("#div_pic"+id).remove();
+        delete: function (id) {
+            if (id > 0) {
+                $("#div_pic" + id).remove();
             }
         },
         destroy: function (obj) {
@@ -270,7 +275,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 str += TMP_jqImg.format(data.items[i].id, data.items[i].url, data.items[i].title);
             }
             //显示图片
-            $("#div_imgPanel").html(str);
+            $("#div_imgPanel").html(TMP_jqImgAdd + str);
 
             $('#div_imgMgr .div_imgBox').hover(function () {
                 $(this).addClass("animated pulse");
@@ -301,19 +306,22 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     if (act === "check") {
                         if (typeof d.callback.onCheck == "function") {
                             d.callback.onCheck(cp);
-                        }else{
+                        } else {
                             console.log("为实现的 onCheck");
                         }
                     } else if (act === "delete") {
                         if (typeof d.callback.onDelete == "function") {
                             d.callback.onDelete(cp);
-                        }else{
+                        } else {
                             console.log("为实现的 onDelete");
                         }
                     }
 
                 }
             });
+
+            // Basic
+            $('#div_imgPanel .dropify').dropify();
 
         },
         initPager: function (data) {
