@@ -46,7 +46,17 @@
                         <pre><code class="language-html" data-lang="html">
                                 $("#btnTest").jqImgMgr({
                                     tabs:data.resTabs.data,
-                                    data:data.resImgs.data
+                                    data:data.resImgs.data,
+                                    callback:{             
+                                        onDelete: function (d) {
+                                        },
+                                        onTab: function (d) {
+                                        },
+                                        onPager: function (d) {
+                                        },
+                                        onCheck: function (d) {
+                                        }
+                                    }
                                 });
                             </code>
                          </pre>
@@ -176,6 +186,8 @@
                 }
             }
         }
+
+        $("#btnTest").jqImgMgr(config);
         
         $(".btnTest").click(function (e) {
             var obj = $(e.target);

@@ -47,8 +47,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
     <p class="card-text">{2}</p>\
     <div class="d-flex justify-content-between align-items-center">\
       <div class="btn-group">\
-        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>\
-        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>\
+        <button type="button" class="btn btn-sm btn-default btn-outline-secondary" data-act="check">选择</button>\
+        <button type="button" class="btn btn-sm btn-warning btn-outline-secondary" data-act="delete">删除</button>\
       </div>\
       <small class="text-muted">9 mins</small>\
     </div>\
@@ -68,7 +68,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
 });
 
 (function ($) {
-    var $imgMgr =null;
+    var $imgMgr = null;
     'use strict';
     var opts = {
         tabs: {},
@@ -81,25 +81,25 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
         }
     }
 
-    var m={
-        set:function(options){
+    var m = {
+        set: function (options) {
             var d = $.extend(true, opts, options);
             $imgMgr.data("jqImgMgr", d);
             return d;
         },
-        setTab:function(data){
+        setTab: function (data) {
             var d = $imgMgr.data("jqImgMgr");
             d.tabs = data;
             $imgMgr.data("jqImgMgr", d);
             return d;
         },
-        setData:function(data){
+        setData: function (data) {
             var d = $imgMgr.data("jqImgMgr");
             d.data = data;
             $imgMgr.data("jqImgMgr", d);
             return d;
         },
-        get:function(){
+        get: function () {
             var d = $imgMgr.data("jqImgMgr");
             return d;
         }
@@ -111,7 +111,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             var d = m.set(options);
 
             dom.initTab(d.tabs);
-            dom.initImg( d.data);
+            dom.initImg(d.data);
             dom.initPager(d.data);
             $('#div_imgMgr').modal('show');
         },
@@ -125,8 +125,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
         show: function (d) {
             $('#div_imgMgr').modal('show');
         },
-        hide: function () { 
-            $('#div_imgMgr').modal('hide'); 
+        hide: function () {
+            $('#div_imgMgr').modal('hide');
         },
         toggle: function () {
             $('#div_imgMgr').modal('toggle');
@@ -134,7 +134,12 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
         getParams: function () {
             var para = GetParams();
             return para;
-        },      
+        },
+        delete:function(id){
+            if(id>0){
+                $("#div_pic"+id).remove();
+            }
+        },
         destroy: function (obj) {
             $imgMgr.data("jqImgMgr", {});
             $("#div_imgTabs").html("");
@@ -238,7 +243,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             //显示Nav
             $("#div_imgTabs").html(str);
 
-            var d = m.get(); 
+            var d = m.get();
             $('#div_imgTabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var $obj = $(e.target), $objP = $obj.parents(".dropdown");
                 $("#div_imgTabs .active").removeClass("active");
@@ -248,10 +253,9 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     $objP.addClass("active");
                     $objP.find(".dropdown-toggle").addClass("active");
                 }
-             
+
 
                 if (typeof d.callback.onTab == "function") {
-                   
                     var tp = GetParams()
                     d.callback.onTab(tp);
                 }
@@ -280,6 +284,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             var d = m.get();
             $("#div_imgPanel").unbind("click").click(function (e) {
                 var $obj = $(e.target);
+                var act = $obj.data("act");
                 if (e.target.tagName === "SPAN" && $obj.hasClass("btnCornerDelete")) {
                     var cp = GetParams(), p = $obj.parents(".div_imgBox");
                     cp["picid"] = p.data("picid");
@@ -289,13 +294,23 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     console.log(cp);
 
                 } else if (e.target.tagName === "BUTTON") {
+
                     var cp = GetParams(), p = $obj.parents(".div_imgBox");
                     cp["picid"] = p.data("picid");
                     cp["picurl"] = p.find("img").prop("src");
-                    if (typeof d.callback.onCheck == "function") {
-                        d.callback.onCheck(cp);
+                    if (act === "check") {
+                        if (typeof d.callback.onCheck == "function") {
+                            d.callback.onCheck(cp);
+                        }else{
+                            console.log("为实现的 onCheck");
+                        }
+                    } else if (act === "delete") {
+                        if (typeof d.callback.onDelete == "function") {
+                            d.callback.onDelete(cp);
+                        }else{
+                            console.log("为实现的 onDelete");
+                        }
                     }
-                    console.log(cp);
 
                 }
             });
@@ -346,7 +361,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             strPage += tempPage.format(data.pageIndex == data.pageTotal ? "disabled" : "", data.pageTotal, '»');
             $("#div_imgPager").html('<ul class="pagination">' + strPage + '</ul>');
 
-            var d = m.get(); 
+            var d = m.get();
             $("#div_imgPager").unbind("click").bind("click", function (e) {
                 var $obj = $(e.target);
                 if (e.target.tagName === "A" && $obj.hasClass("paging")) {
@@ -371,10 +386,10 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
     $.fn.jqImgMgr = function (options) {
 
         if (options && typeof options === "object") {
-            $imgMgr = this;
+            $imgMgr = $(this);
             return c.init.call($imgMgr, options);
         } else if (options && typeof options === "string" && c[options]) {
-            $imgMgr = this;
+            $imgMgr = $(this);
             return c[options].call($imgMgr, arguments[1]);
         }
     }

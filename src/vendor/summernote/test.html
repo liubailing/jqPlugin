@@ -80,24 +80,24 @@
                     callback: {
                         onDelete: function (d) {
                             console.log("点击删除：" + d.picid);
-                            $("#btnTest").jqImgMgr("delete", d.picid);
+                            //$("#btnTest").jqImgMgr("delete", d.picid);
                         },
                         onTab: function (d) {
                             //$("#btnTest").jqImgMgr("setTab", data.resTabs.data);
                             var d = data.resImgs.data;
                             d.pageIndex = 1;
-                            $("#btnTest").jqImgMgr("setImg", d);
+                            //$("#btnTest").jqImgMgr("setImg", d);
                             console.log("点击分组");
                         },
                         onPager: function (d) {
                             var imgs = data.resImgs.data;
                             imgs.pageIndex = d.pageindex;
-                            $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                           // $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
                             console.log("点击分页");
                         },
                         onCheck: function (d) {
                             context.invoke('editor.insertImage',d.picurl,'');
-                            $("#btnTest").jqImgMgr("hide");
+                            //$("#btnTest").jqImgMgr("hide");
                             console.log("选择图片");
                         }
                     }
