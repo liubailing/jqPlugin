@@ -32,6 +32,7 @@ var sass 		= require('gulp-sass'),					// CSS预处理/Sass编译
 /* = 全局设置
 -------------------------------------------------------------- */
 var src = {
+	vendor:'src/vendor/**/*',
 	html: '',
 	img: '',
 	css: '',
@@ -124,15 +125,14 @@ gulp.task('watch', function () {
 	});
 
 	console.log('----------------- 开发环境 -----------------');
+	gulp.watch(src.vendor, ['vendor', 'browser-reload']);
 
-	// 监听 html
-	gulp.watch(src.html, ['html', 'browser-reload']);
-	// 监听 scss
-	gulp.watch(src.css, ['css', 'browser-reload']);
-	// 监听 data
-	gulp.watch(src.data, ['data', 'browser-reload']);
-	// 监听 js
-	gulp.watch(src.js, ['js', 'browser-reload']);
+	gulp.watch(src.html, ['html', 'browser-reload']); 	
+	gulp.watch(src.html, ['html', 'browser-reload']); 	// 监听 html
+	gulp.watch(src.css, ['css', 'browser-reload']);		// 监听 scss	
+	gulp.watch(src.data, ['data', 'browser-reload']);	// 监听 data
+	
+	gulp.watch(src.js, ['js', 'browser-reload']);		// 监听 js
 });
 
 // HTML处理
