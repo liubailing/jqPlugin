@@ -59,49 +59,31 @@ var data={
                     title:'test, img 1 his is a wider card with supporting text below as a natural lead-in to additional content. This content ',
                     desc:'',
                     url:'https://img.qunba.com/4d49e31e2a514eb788483422f7c2c4bd.png'
-                },
-                {
-                    id:8,
-                    title:'test, his is a wider card with supporting text below as a natural lead-in to additional content. This content  his is a wider card with supporting text below as a natural lead-in to additional content. This content img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/44e87134fd9e4772ae55617e2c7f5d25.png'
-                },
-                {
-                    id:9,
-                    title:'test, img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/13bb019e06fe4faf8799056f34e18395.png'
-                },
-                {
-                    id:10,
-                    title:'test, img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/7653395e7fe74183ae28e929f2cd2502.png',
-                },
-                {
-                    id:11,
-                    title:'test, img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/4fceb32bb5cf4f31ae58b84612908982.png'
-                },
-                {
-                    id:12,
-                    title:'test, img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/4f304610a92047cd82a0cf9195587993.png'
-                },
-                {
-                    id:13,
-                    title:'当一个人被共情连接时',
-                    desc:'他的神经化学物质就会发生改变',
-                    url:'https://img.qunba.com/4f304610a92047cd82a0cf9195587993.png'
-                },
-                {
-                    id:14,
-                    title:'test, img 1',
-                    desc:'',
-                    url:'https://img.qunba.com/8659836e15de4ff0a53a1953ca59f054.png'
                 }
+                // {
+                //     id:8,
+                //     title:'test, his is a wider card with supporting text below as a natural lead-in to additional content. This content  his is a wider card with supporting text below as a natural lead-in to additional content. This content img 1',
+                //     desc:'',
+                //     url:'https://img.qunba.com/44e87134fd9e4772ae55617e2c7f5d25.png'
+                // },
+                // {
+                //     id:9,
+                //     title:'test, img 1',
+                //     desc:'',
+                //     url:'https://img.qunba.com/13bb019e06fe4faf8799056f34e18395.png'
+                // },
+                // {
+                //     id:10,
+                //     title:'test, img 1',
+                //     desc:'',
+                //     url:'https://img.qunba.com/7653395e7fe74183ae28e929f2cd2502.png',
+                // },
+                // {
+                //     id:11,
+                //     title:'test, img 1',
+                //     desc:'',
+                //     url:'https://img.qunba.com/4fceb32bb5cf4f31ae58b84612908982.png'
+                // }
             ]
         }
     },

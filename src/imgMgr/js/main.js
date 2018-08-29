@@ -317,29 +317,29 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
 
         },
         initPager: function (data) {
-            if (data.pageIndex > data.pageTotal) data.pageIndex = data.pageTotal;
+            if (data.pageindex > data.pagetotal) data.pageindex = data.pagetotal;
 
             var strPage = "", tempPage = '<li class="page-item {0}"><a class="page-link paging" title="{1}" data-page="{1}" >{2}</a></li>';
-            strPage += tempPage.format(data.pageIndex == 1 ? "disabled" : "", 1, '«');
-            if (data.pageIndex > 1) {
-                strPage += tempPage.format(data.pageIndex == 1 ? "disabled" : "", data.pageIndex > 1 ? (data.pageIndex - 1) : 1, '‹');
+            strPage += tempPage.format(data.pageindex == 1 ? "disabled" : "", 1, '«');
+            if (data.pageindex > 1) {
+                strPage += tempPage.format(data.pageindex == 1 ? "disabled" : "", data.pageindex > 1 ? (data.pageindex - 1) : 1, '‹');
             }
 
             var arr = [], cur = 0;
-            if (data.pageIndex < 2 || data.pageTotal < 5) {
+            if (data.pageindex < 2 || data.pagetotal < 5) {
                 arr = [0, 1, 2, 3, 4];
             } else {
                 arr = [-2, -1, 0, 1, 2];
                 for (var i = 0, k = 0; i < 5; i++) {
                     k++; if (k > 20) break;
-                    cur = arr[i] + data.pageIndex;
+                    cur = arr[i] + data.pageindex;
                     if (cur <= 0) {
                         arr.push(arr[arr.length - 1] + 1);
                         arr.splice(0, 1);
                         i--;
                         continue;
-                    } else if (cur > 0 && data.pageTotal > 5 && cur > data.pageTotal - 4 + i) {
-                        console.log(arr[i] - 1);
+                    } else if (cur > 0 && data.pagetotal > 5 && cur > data.pagetotal - 4 + i) {
+                        //console.log(arr[i] - 1);
                         arr.splice(0, 0, arr[i] - 1);
                         arr.splice(5, 1);
                         i--;
@@ -349,16 +349,16 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             }
 
             for (var i = 0; i < 5; i++) {
-                cur = arr[i] + data.pageIndex;
-                if (cur > 0 && cur <= data.pageTotal)
-                    strPage += tempPage.format(data.pageIndex == cur ? "active" : "", cur, cur);
+                cur = arr[i] + data.pageindex;
+                if (cur > 0 && cur <= data.pagetotal)
+                    strPage += tempPage.format(data.pageindex == cur ? "active" : "", cur, cur);
             }
 
 
-            if (data.pageIndex < data.pageTotal) {
-                strPage += tempPage.format(data.pageIndex == data.pageTotal - 1 ? "disabled" : "", data.pageIndex < data.pageTotal ? (data.pageIndex + 1) : data.pageTotal, '›');
+            if (data.pageindex < data.pagetotal) {
+                strPage += tempPage.format(data.pageindex == data.pagetotal - 1 ? "disabled" : "", data.pageindex < data.pagetotal ? (data.pageindex + 1) : data.pagetotal, '›');
             }
-            strPage += tempPage.format(data.pageIndex == data.pageTotal ? "disabled" : "", data.pageTotal, '»');
+            strPage += tempPage.format(data.pageindex == data.pagetotal ? "disabled" : "", data.pagetotal, '»');
             $("#div_imgPager").html('<ul class="pagination">' + strPage + '</ul>');
 
             var d = m.get();
@@ -393,12 +393,6 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             return c[options].call($imgMgr, arguments[1]);
         }
     }
-
-    $.fn.jqImgMgr.Options = {
-
-    };
-
-
 
 })(jQuery);
 
