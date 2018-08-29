@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title> 1测试 summernote</title>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link rel="stylesheet" href="../../base/css/vendor.min.css" />
+    <script type="text/javascript" src="../../base/js/vendor.min.js"></script>
+
+    <link href="dist/summernote.css" rel="stylesheet">
+    <script src="dist/summernote.js"></script>
+
+    <link src="../../jqimgmgr/main.min.css" />
+    <script src="../../jqimgmgr/main.min.js"></script>
+    <script src="../../jqimgmgr/data.min.js"></script>
+
+    <script src="dist/plugin/hello/summernote-ext-hello.js"></script>
+    <script src="dist/plugin/image-selector/summernote-ext-image-selector.js"></script>
+
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="summernote summernote123"></div>
+    <div class="summernote summernote456"></div>
+</body>
+
+
+
+<script type="text/javascript">
+    var config123 = {
+        lang: 'zh-CN',
+        height: 300,
+        // toolbar工具栏默认
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+            ['custom', ['imageSelector']]
+        ],
+        buttons: {
+            "imageSelector": function (context) {
+                $("#div_jqImgMgr").jqImgMgr({
+                    tabs: data.resTabs.data,
+                    data: data.resImgs.data
+                });
+                var imgs = data.resImgs.data;
+                $("#div_jqImgMgr").jqImgMgr("setTab", data.resTabs.data);
+                $("#div_jqImgMgr").jqImgMgr("setImg", data.resImgs.data);
+                $("#div_jqImgMgr").jqImgMgr("show");
+                // context.invoke('editor.insertText', '测试插入文本');
+            }
+        }
+
+    }
+
+
+    var config456 = {
+        lang: 'zh-CN',
+        height: 300,
+        // toolbar工具栏默认
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['custom', ['imageSelector']]
+        ],
+        buttons: {
+            "imageSelector": function (context) {
+                $("#div_jqImgMgr").jqImgMgr({
+                    tabs: data.resTabs.data,
+                    data: data.resImgs.data,
+                    callback: {
+                        onDelete: function (d) {
+                            console.log("点击删除：" + d.picid);
+                            $("#btnTest").jqImgMgr("delete", d.picid);
+                        },
+                        onTab: function (d) {
+                            //$("#btnTest").jqImgMgr("setTab", data.resTabs.data);
+                            var d = data.resImgs.data;
+                            d.pageIndex = 1;
+                            $("#btnTest").jqImgMgr("setImg", d);
+                            console.log("点击分组");
+                        },
+                        onPager: function (d) {
+                            var imgs = data.resImgs.data;
+                            imgs.pageIndex = d.pageindex;
+                            $("#btnTest").jqImgMgr("setImg", data.resImgs.data);
+                            console.log("点击分页");
+                        },
+                        onCheck: function (d) {
+                            context.invoke('editor.insertImage',d.picurl,'');
+                            $("#btnTest").jqImgMgr("hide");
+                            console.log("选择图片");
+                        }
+                    }
+                });
+              
+                // context.invoke('editor.insertText', '测试插入文本');
+            }
+        }
+
+    }
+
+
+    $(document).ready(function () {
+        $('.summernote123').summernote(config123);
+        $('.summernote456').summernote(config456);
+
+        //$('#summernote').summernote('insertNode', "1212");
+        //$("#summernote1111").jqImgMgr("show");
+
+    });
+</script>
+
+
+
+</html>
