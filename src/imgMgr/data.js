@@ -93,8 +93,8 @@ var data={
         data: {
             id:1111,
             title:'test, img 1',
-            desc:'https://img.qunba.com/21d7fdeedd814ba58339390005cc0b46.png',
-            url:'',
+            desc:'',
+            url:'https://img.qunba.com/21d7fdeedd814ba58339390005cc0b46.png',
         }
     }
 }

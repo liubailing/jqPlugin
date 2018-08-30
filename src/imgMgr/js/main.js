@@ -27,7 +27,7 @@ var TMP_jqImg = '\
         <span class="btnCornerDelete"></span>\
         <img class="card-img-top" data-src="{1}" src="{1}" data-holder-rendered="true" style="height: 150px; width: 100%; display: block;">\
         <div class="card-body ">\
-            <p class="card-text margin-bottom  oneline">{2}</p>\
+            <p class="card-text  oneline">{2}</p>\
             <div class="d-flex justify-content-between align-items-center">\
             <div class="btn-group">\
                 <button type="button" act="check" class="btn btn-sm btn-default">选择</button>\
@@ -39,10 +39,18 @@ var TMP_jqImg = '\
     </div>\
 </div>';
 
-var TMP_jqImgAdd = '<div class="col-md-3 div_imgBox" id="div_pic0" data-picId="0">\
-<div class="card mb-3 shadow-sm">\
-<input type="file" id="input-file-now-custom-2" class="dropify" />\
-</div>\
+var TMP_jqImgAdd = '\
+<div class="col-md-3 div_imgBox" id="div_pic0" data-picId="0">\
+    <div class="card mb-3 shadow-sm">\
+        <input type="file" id="fileUpload" class="dropify" data-height="210" data-max-file-size="1024K" data-allowed-file-extensions="png jpg jpeg"/>\
+        <div class="card-body">\
+            <p class="card-text oneline">&nbsp;</p>\
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:5px;">\
+                <button type="button" class="btn btn-sm btn-primary btn-outline-secondary btn-upload" data-act="upload">上传</button>\
+            <small class="text-muted"></small>\
+            </div>\
+        </div>\
+    </div>\
 </div>';
 
 var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0}">\
@@ -55,7 +63,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
         <button type="button" class="btn btn-sm btn-default btn-outline-secondary" data-act="check">选择</button>\
         <button type="button" class="btn btn-sm btn-warning btn-outline-secondary" data-act="delete">删除</button>\
       </div>\
-      <small class="text-muted">9 mins</small>\
+      <small class="text-muted"></small>\
     </div>\
   </div>\
 </div>\
@@ -82,7 +90,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             onPager: null,//点击 onPager 分页
             onTab: null,//点击 onTab 分组
             onCheck: null,//点击选中
-            onDelete: null//点击删除
+            onDelete: null,//点击删除
+            onUpload: null //上传，
         }
     }
 
@@ -144,6 +153,12 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             if (id > 0) {
                 $("#div_pic" + id).remove();
             }
+        },
+        add:function(data){
+            var str = TMP_jqImg.format(data.id, data.url, data.title);
+            $("#div_pic0").remove();
+              //显示图片
+              $("#div_imgPanel").prepend(str);
         },
         destroy: function (obj) {
             $imgMgr.data("jqImgMgr", {});
@@ -296,7 +311,7 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     if (typeof d.callback.onDelete == "function") {
                         d.callback.onDelete(cp);
                     }
-                    console.log(cp);
+                    //console.log(cp);
 
                 } else if (e.target.tagName === "BUTTON") {
 
@@ -321,7 +336,28 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
             });
 
             // Basic
-            $('#div_imgPanel .dropify').dropify();
+            var up = $('#div_imgPanel .dropify').dropify({
+                messages: {
+                    'default': '点击或拖拽文件到这里',
+                    'replace': '点击或拖拽文件到这里来替换文件',
+                    'remove':  '移除文件',
+                    'error':   '对不起，你上传的文件太大了'
+                }
+            });
+
+            up.on("dropify.afterClear",function(event,element){  
+                //alert('文件已删除');
+            })
+
+            $("#div_imgPanel .btn-upload").click(function(){
+                var f = $("#fileUpload").val(), fp = GetParams();;
+                if(f !== "" && typeof d.callback.onUpload == "function"){
+                    d.callback.onUpload(f,fp);
+                }else{
+                    $("#fileUpload").click();
+                }
+                //console.log();
+            })
 
         },
         initPager: function (data) {

@@ -146,6 +146,40 @@
 
                 </div>
 
+                <div class="bd-example-border-utils bd-example-border-utils-0">
+                    <div class="bd-example">
+                        <a data-act="delete" class="btn btnTest"> 删除某一张 </a>
+                    </div>
+                    <div class="bd-clipboard">
+                        <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+                    </div>
+                    <figure class="highlight">
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("delete" 6);</code></pre>
+                    </figure>
+
+                </div>
+
+
+                <div class="bd-example-border-utils bd-example-border-utils-0">
+                    <div class="bd-example">
+                        <a data-act="add" class="btn btnTest"> 追加图片a </a>
+                    </div>
+                    <div class="bd-clipboard">
+                        <button class="btn-clipboard" title="" data-original-title="Copy to clipboard">Copy</button>
+                    </div>
+                    <figure class="highlight">
+                        <pre><code class="language-html" data-lang="html">
+                            $("#btnTest").jqImgMgr("add" {
+                                id:1111,
+                                title:'test, img 1',
+                                desc:'',
+                                url:'https://img.qunba.com/21d7fdeedd814ba58339390005cc0b46.png',
+                            });</code></pre>
+                    </figure>
+
+                </div>
+
         </div>
     </div>
     <div class="btnTest" id="btnTest"></div>
@@ -185,6 +219,12 @@
                 onCheck: function (d) {
                     $("#btnTest").jqImgMgr("hide");
                     console.log("选择图片");
+                },
+                onUpload: function (f,d) {
+                    var add = data.resAdd.data;
+                    $("#btnTest").jqImgMgr("add",add);
+                    //$("#btnTest").jqImgMgr("hide");
+                    console.log("选择图片");
                 }
             }
         }
@@ -215,6 +255,17 @@
                     break;
                 case "hide":
                     $("#btnTest").jqImgMgr("hide");
+                    break;
+                case "add":
+                    $("#btnTest").jqImgMgr("add",{
+                        id:1111,
+                        title:'test, img 1',
+                        desc:'',
+                        url:'https://img.qunba.com/21d7fdeedd814ba58339390005cc0b46.png',
+                    });
+                                break;
+                case "delete":
+                    $("#btnTest").jqImgMgr("delete",6);
                     break;
                 default:
                     break;
