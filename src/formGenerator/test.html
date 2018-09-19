@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <title>表单生成器 | JQ插件</title>
+
+    <link rel="stylesheet" href="../base/css/vendor.min.css" />
+    <script type="text/javascript" src="../base/js/vendor.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="main.min.css" /> -->
+    <!-- 页面布局样式,与插件无关 -->
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/assets/css/docs.min.css" />
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid" style="width:80%">
+
+        <div class="row flex-xl-nowrap">
+            <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+                <h1 class="bd-title" id="content">Jquery JqFormGenerator</h1>
+
+                <div id="divTest" class="text-info""">
+
+                </div>
+        </div>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- 页面布局样式,与插件无关 -->
+<!-- <script type="text/javascript" src="https://getbootstrap.com/docs/4.1/assets/js/docs.min.js"></script> -->
+
+<script type="text/javascript">
+    $(function () {
+
+        var config = {
+            type: "edit",
+            model: {
+                id: 1,
+                name: "John Doe",
+                password: "J0hnD03!x4",
+                age: 35,
+                skills: ["Javascript", "VueJS"],
+                email: "john.doe@gmail.com",
+                status: true
+            },
+            schema: {
+                fields: [{
+                    type: "input",
+                    inputType: "text",
+                    label: "ID",
+                    model: "id",
+                    readonly: true,
+                    featured: false,
+                    disabled: true
+                }, {
+                    type: "input",
+                    inputType: "text",
+                    label: "Name",
+                    model: "name",
+                    readonly: false,
+                    featured: true,
+                    required: true,
+                    disabled: false,
+                    placeholder: "User's name"
+                }, {
+                    type: "input",
+                    inputType: "password",
+                    label: "Password",
+                    model: "password",
+                    min: 6,
+                    required: true,
+                    hint: "Minimum 6 characters"
+                }, {
+                    type: "input",
+                    inputType: "number",
+                    label: "Age",
+                    model: "age",
+                    min: 18
+                }, {
+                    type: "input",
+                    inputType: "email",
+                    label: "E-mail",
+                    model: "email",
+                    placeholder: "User's e-mail address"
+                }, {
+                    type: "checklist",
+                    label: "Skills",
+                    model: "skills",
+                    multi: true,
+                    required: true,
+                    multiSelect: true,
+                    values: ["HTML5", "Javascript", "CSS3", "CoffeeScript", "AngularJS", "ReactJS",
+                        "VueJS"
+                    ]
+                }, {
+                    type: "switch",
+                    label: "Status",
+                    model: "status",
+                    multi: true,
+                    readonly: false,
+                    featured: false,
+                    disabled: false,
+                    default: true,
+                    textOn: "Active",
+                    textOff: "Inactive"
+                }]
+            },
+            formOptions: {
+                validateAfterLoad: true,
+                validateAfterChanged: true
+            }
+        }
+
+        $("#divTest").jqFormGenerator(config);
+
+
+//JqFormGenerator.scriptLoader.load("input.js")
+        console.log("end");
+
+    })
+</script>
+
+
+
+</html>
