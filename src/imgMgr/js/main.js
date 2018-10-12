@@ -1,6 +1,6 @@
 var TMP_jqImgMgr = '<div id="div_jqImgMgr"></div>\
 <div class="modal fade" id="div_imgMgr" tabindex="-1" role="dialog">\
-<div class="modal-dialog" role="document" style="width:95%;max-width:unset;">\
+<div class="modal-dialog" role="document" style="width:80%;max-width:unset;">\
   <div class="modal-content">\
     <div class="modal-header">\
       <h4 class="modal-title" style="display: inline-block">图片管理</h4>\
@@ -21,28 +21,10 @@ var TMP_jqImgMgr = '<div id="div_jqImgMgr"></div>\
 </div>\
 </div>';
 
-var TMP_jqImg = '\
-<div class="col-md-3 div_imgBox" id="div_imgbox{0}" data-picId="{0}">\
-    <div class="card mb-3 shadow-sm">\
-        <span class="btnCornerDelete"></span>\
-        <img class="card-img-top" data-src="{1}" src="{1}" data-holder-rendered="true" style="height: 150px; width: 100%; display: block;">\
-        <div class="card-body ">\
-            <p class="card-text  oneline">{2}</p>\
-            <div class="d-flex justify-content-between align-items-center">\
-            <div class="btn-group">\
-                <button type="button" act="check" class="btn btn-sm btn-default">选择</button>\
-                <button type="button" act="delete" class="btn btn-sm btn-default">删除</button>\
-            </div>\
-            <small class="text-muted pull-right"></small>\
-            </div>\
-        </div>\
-    </div>\
-</div>';
-
 var TMP_jqImgAdd = '\
 <div class="col-md-3 div_imgBox" id="div_pic0" data-picId="0">\
     <div class="card mb-3 shadow-sm">\
-        <input type="file" id="fileUpload" class="dropify" data-height="210" data-max-file-size="1024K" data-allowed-file-extensions="png jpg jpeg"/>\
+        <input type="file" id="imgMgrFileUpload" name="imgMgrFileUpload" class="dropify" data-height="210" data-max-file-size="1024K" data-allowed-file-extensions="png jpg jpeg"/>\
         <div class="card-body">\
             <p class="card-text oneline">&nbsp;</p>\
             <div class="d-flex justify-content-between align-items-center" style="padding-top:5px;">\
@@ -55,7 +37,7 @@ var TMP_jqImgAdd = '\
 
 var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0}">\
 <div class="card mb-3 shadow-sm">\
-  <img class="card-img-top" data-src="{1}" alt="" src="{1}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">\
+  <img class="card-img-top" data-src="{1}" alt="" src="{1}" data-holder-rendered="true" style="height: 210px; width: 100%; display: block;">\
   <div class="card-body">\
     <p class="card-text">{2}</p>\
     <div class="d-flex justify-content-between align-items-center">\
@@ -84,6 +66,8 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
     var $imgMgr = null;
     'use strict';
     var opts = {
+        width: "90%",
+        picHeight: 210,//px
         tabs: {},
         data: {},
         callback: {
@@ -154,11 +138,11 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 $("#div_pic" + id).remove();
             }
         },
-        add:function(data){
+        add: function (data) {
             var str = TMP_jqImg.format(data.id, data.url, data.title);
             $("#div_pic0").remove();
-              //显示图片
-              $("#div_imgPanel").prepend(str);
+            //显示图片
+            $("#div_imgPanel").prepend(str);
         },
         destroy: function (obj) {
             $imgMgr.data("jqImgMgr", {});
@@ -180,38 +164,9 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 pageindex: ind
             }
         };
+        a["pageindex"] = ind;
 
-        if (a.infoid > 0 && a.groupid > 0) {
-            return {
-                type: "infoGroup",
-                infoid: a.infoid,
-                groupid: a.groupid,
-                pageindex: ind
-            };
-        } else if (a.infoid > 0) {
-            return {
-                type: "info",
-                infoid: a.infoid,
-                pageindex: ind
-            }
-        } else if (a.groupid > 0) {
-            return p = {
-                type: "group",
-                groupid: a.groupid,
-                pageindex: ind
-            }
-        } else if (a.userid > 0) {
-            return {
-                type: "user",
-                userid: a.userid,
-                pageindex: ind
-            }
-        } else {
-            return {
-                type: "all",
-                pageindex: ind
-            }
-        }
+        return a;
     }
 
     var dom = {
@@ -222,42 +177,23 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 return '';
             }
             var str = '', g = data;
-            if (g.all != undefined && g.all != null) {
-                str += ('<li role="presentation" class="nav-item {0}"><a class="nav-link {0}" href="#div_imgPanel" id="btn_allTab" role="tab" data-toggle="tab" aria-controls="div_imgPanel">所有图片</a></li>').format(getClass(g.all.class));
-            }
 
-            if (g.user != undefined && g.user != null && g.user.id != null && g.user.id > 0) {
-                str += ('<li role="presentation" class="nav-item {0}"><a class="nav-link  {0}" href="#div_imgPanel" id="btn_myTab" role="tab" data-toggle="tab" aria-controls="div_imgPanel" data-userId="{1}">我的图片</a></li>').format(getClass(g.all.class), g.user.id);
-            }
+            for (var i = 1; i < g.length; i++) {
+                var gg = g[i];
+                if (typeof gg.children === "object" && gg.children.length > 0) {
 
+                    var gs = gg.children, str2 = '', isAct = '';
+                    for (var j = 0; j < gs.length; j++) {
+                        var css = getClass(gs[j].class);
+                        str2 += ('<li><a class="dropdown-item" href="#div_imgPanel" role="tab" data-toggle="tab" aria-controls="div_imgPanel" data-type="{1}" data-id="{2}" data-childId="{3}" >{4}</a></li>').format(css, gg.type, gg.id, gs[j].id, gs[j].name);
+                        if (css == "active") isAct = "active";
+                    }
 
-            if (g.group != undefined && g.group != null && g.group.children != null && g.group.children.length > 0) {
-                var gs = g.group.children, str1 = '', isAct = false;
-                for (var i = 0; i < gs.length; i++) {
-                    var css = getClass(gs[i].class);
-                    str1 += ('<li><a class="dropdown-item {0}" href="#div_imgPanel" role="tab" data-toggle="tab" aria-controls="div_imgPanel" data-groupId="{1}">{2}</a></li>').format(css, gs[i].id, gs[i].name);
-                    if (css == "active") isAct = "active";
+                    str += ('<li role="presentation" class="nav-item dropdown {0}"><a class="nav-link dropdown-toggle {0}" role="dropdown" data-toggle="dropdown" aria-controls="dd_imgChildren{2}">{1}<span class="caret"></span></a><ul class="dropdown-menu" aria-labelledby="dd_imgChildren{2}" id="dd_imgChildren{2}"><li>{3}</li></ul></li>').format(isAct, gg.name, gg.type + gg.id, str2);
+
+                } else {
+                    str += ('<li role="presentation" class="nav-item btn_imgTab {0}"><a class="nav-link  {0}" href="#div_imgPanel" role="tab" data-toggle="tab" aria-controls="div_imgPanel" data-type="{1}" data-id="{3}">{2}</a></li>').format(getClass(gg.class), gg.type, gg.name, gg.id);
                 }
-                str += ('<li role="presentation" class="nav-item dropdown {0}"><a class="nav-link dropdown-toggle {0}" id="btn_groupTab" role="dropdown" data-toggle="dropdown" aria-controls="dd_imgGroups">分组组图片<span class="caret"></span></a><ul class="dropdown-menu" aria-labelledby="btn_groupTab" id="dd_imgGroups">{1}</ul></li>').format(isAct, str1);
-            }
-
-
-            if (g.info != undefined && g.info != null && g.info.id != null && g.info.id > 0) {
-                //str+='<li role="presentation" class="nav-item nav_level1 '+getClass(g.info.class)+'"><a href="#" data-infoId="'+g.info.id+'">信息图片</a></li>';
-                str += ('<li role="presentation" class="nav-item {0}"><a class="nav-link {0}" href="#div_imgPanel" id="btn_infoTab" role="tab" data-toggle="tab" aria-controls="div_imgPanel"  data-infoId="{1}">信息图片</a></li>').format(getClass(g.info.class), g.info.id);
-            }
-
-
-
-            if (g.infoGroup != undefined && g.infoGroup != null && g.infoGroup.children != null && g.infoGroup.children.length > 0) {
-                var gs = g.infoGroup.children, str2 = '', isAct = '';
-                for (var i = 0; i < gs.length; i++) {
-                    var css = getClass(gs[i].class);
-                    //str2 += '<li class="nav-item nav_level2 ' + css + '"><a data-infoId="' + g.infoGroup.infoId + '" data-groupId="' + gs[i].id + '" href="#">' + gs[i].name + '</a></li>';
-                    str2 += ('<li><a class="dropdown-item" href="#div_imgPanel" role="tab" data-toggle="tab" aria-controls="div_imgPanel" data-infoId="{1}" data-groupId="{2}" >{2}</a></li>').format(css, g.infoGroup.infoId, gs[i].id, gs[i].name);
-                    if (css == "active") isAct = "active";
-                }
-                str += ('<li role="presentation" class="nav-item dropdown {0}"><a class="nav-link dropdown-toggle {0}" id="btn_infogroupTab" role="dropdown" data-toggle="dropdown" aria-controls="dd_imgInfoGroups">信息-分组图片图片<span class="caret"></span></a><ul class="dropdown-menu" aria-labelledby="btn_infogroupTab" id="dd_imgInfoGroups"><li>{1}</li></ul></li>').format(isAct, str2);;
             }
 
             //显示Nav
@@ -274,14 +210,10 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                     $objP.find(".dropdown-toggle").addClass("active");
                 }
 
-
                 if (typeof d.callback.onTab == "function") {
-                    var tp = GetParams()
+                    var tp = GetParams();
                     d.callback.onTab(tp);
                 }
-
-                //console.log(e.target); // newly activated tab
-                //console.log(e.relatedTarget); // previous active tab
             })
         },
         initImg: function (data) {
@@ -340,21 +272,21 @@ var TMP_jqImg = '<div class="col-md-3 div_imgBox" id="div_pic{0}" data-picId="{0
                 messages: {
                     'default': '点击或拖拽文件到这里',
                     'replace': '点击或拖拽文件到这里来替换文件',
-                    'remove':  '移除文件',
-                    'error':   '对不起，你上传的文件太大了'
+                    'remove': '移除文件',
+                    'error': '对不起，你上传的文件太大了'
                 }
             });
 
-            up.on("dropify.afterClear",function(event,element){  
+            up.on("dropify.afterClear", function (event, element) {
                 //alert('文件已删除');
             })
 
-            $("#div_imgPanel .btn-upload").click(function(){
-                var f = $("#fileUpload").val(), fp = GetParams();;
-                if(f !== "" && typeof d.callback.onUpload == "function"){
-                    d.callback.onUpload(f,fp);
-                }else{
-                    $("#fileUpload").click();
+            $("#div_imgPanel .btn-upload").click(function () {
+                var f = $("#imgMgrFileUpload").val(), fp = GetParams();;
+                if (f !== "" && typeof d.callback.onUpload == "function") {
+                    d.callback.onUpload(f, fp);
+                } else {
+                    $("#imgMgrFileUpload").click();
                 }
                 //console.log();
             })
